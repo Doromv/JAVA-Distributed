@@ -10,10 +10,10 @@ spring:
     name: orderservice
   cloud:
     nacos:
-      server-addr: localhost:8848
+      server-addr: localhost:80
       discovery:
         cluster-name: HZ
-        namespace: 2cc7e42f-5b31-4a8d-8aee-3835e5935d18 #dev环境
+#        namespace: 2cc7e42f-5b31-4a8d-8aee-3835e5935d18 #dev环境
         ephemeral: false #是否是临时实例
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
@@ -35,3 +35,8 @@ ribbon:
   eager-load:
     enabled: true #开启饥饿加载
     clients: userservice #指定饥饿加载的服务名称
+feign:
+  httpclient:
+    enabled: true #支持httpclient的开关
+    max-connections: 200 # 最大的连接数
+    max-connections-per-route: 50 # 每个路径的最大连接数

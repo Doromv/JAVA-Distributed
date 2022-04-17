@@ -15,7 +15,12 @@ import java.time.format.DateTimeFormatter;
 //@RefreshScope
 @RequestMapping("/user")
 public class UserController {
-
+    @Autowired
+    private PatternProperties properties;
+    @GetMapping("prop")
+    public PatternProperties properties(){
+        return properties;
+    }
     @Autowired
     private UserService userService;
 //    @Value("${pattern.dateformat}")
@@ -33,7 +38,8 @@ public class UserController {
      * @return 用户
      */
     @GetMapping("/{id}")
-    public User queryById(@PathVariable("id") Long id) {
+    public User queryById(@PathVariable("id") Long id,@RequestHeader(value = "Doromv",required = false) String Doromv) {
+        System.out.println("------------"+Doromv);
         return userService.queryById(id);
     }
 }
